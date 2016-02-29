@@ -1,0 +1,15 @@
+{
+  "name": "johnlawerance-xtrabackup",
+  "version": "0.1.0",
+  "author": "John Clark",
+  "summary": "Install, configure, and run backups using Percona Xtrabackup for mysql, percona-server, mariadb",
+  "license": "WTFPL-2",
+  "source": "https://github.com/johnlawerance/xtrabackup",
+  "project_page": "https://github.com/johnlawerance/xtrabackup",
+  "issues_url": "https://github.com/johnlawerance/xtrabackup/issues",
+  "dependencies": [
+    {"name":"puppetlabs-stdlib","version_requirement":">= 1.0.0"}
+  ],
+  "data_provider": null
+}
+
