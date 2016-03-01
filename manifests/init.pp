@@ -8,9 +8,9 @@
 #
 # Document parameters here.
 #
-# * `sample parameter`
-# Explanation of what this parameter affects and what it defaults to.
-# e.g. "Specify one or more upstream ntp servers as an array."
+# $backup_dir - [REQUIRED] - Location to make the backup.
+# 
+# 
 #
 # Variables
 # ----------
@@ -45,8 +45,10 @@
 class xtrabackup (
   $package_version = '24-2.4.1-1',
   $install_xtrabackup_bin = true,
+  $prune_backups = true,
   $backup_retention = '7',
   $backup_dir = '',
+  $use_innobackupx = false,
   $backup_script_location = '/usr/local/bin/',
   $mysql_user = '',
   $mysql_pass = '',
@@ -55,13 +57,16 @@ class xtrabackup (
   $cron_minute = '0',
   $cron_month = '*',
   $cron_monthday = '*',
+  $xtrabackup_options = '',
   $innobackupx_options = '',
   
   
 ){
   # Validate arguments
   validate_re($package_version, '^*\.*\.*')
+  validate_bool($use_innobackupx)
   validate_bool($install_xtrabackup_bin)
+  validate_bool($prune_backups)
   validate_integer($backup_retention)
   validate_absolute_path($backup_dir)
   validate_absolute_path($backup_script_location)

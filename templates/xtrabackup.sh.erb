@@ -1,2 +1,53 @@
 #!/bin/bash
 #
+# CONSTANTS
+BACKUP_DIR=<%= @backup_dir %>
+BACKUP_RETENTION=<%= @backup_retention %>
+MYSQL_USER=<%= @mysql_user %>
+MYSQL_PASS=<%= @mysql_pass %>
+USE_INNOBACKUPX=<%= @use_innobackupx %>
+PRUNE_BACKUPS=<%= @prune_backups %>
+XTRABACKUP_OPTIONS=<%= @xtrabackup_options %>
+INNOBACKUPX_OPTIONS=<%= @innobackupx_otions %>
+BACKUP_LOC=${BACKUP_DIR}-`date +%F`
+
+
+prepare_env() {
+  mkdir -p ${BACKUP_LOC}
+
+}
+
+run_xtrabackup() {
+  xtrabackup --backup --target-dir=${BACKUP_DIR}
+  xtrabackup --prepare --target-dir=${BACKUP_DIR}
+  xtrabackup --prepare --target-dir=${BACKUP_DIR}
+}
+
+run_innobackupx() {
+
+}
+
+run_prune_backups() {
+
+}
+
+log() {
+
+}
+
+
+# CALL FUNCTIONS
+prepare_env
+
+if [ $USE_INNOBACKUPX == true ]; then
+  run_innobackupx
+else
+  run_xtrabackup
+fi
+
+if [ $PRUNE_BACKUPS == true ]; then
+  run_prune_backups
+fi
+
+
+
