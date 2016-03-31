@@ -1,4 +1,4 @@
-class xtrabackup::cron{
+class xtrabackup::cron {
 
   if $xtrabackup::enable_cron == true {
     cron { 'xtrabackup':

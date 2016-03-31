@@ -1,4 +1,4 @@
-class xtrabackup::install {
+class xtrabackup::install inherits xtrabackup {
 
   if $xtrabackup::install_xtrabackup_bin == true {
     yumrepo { 'percona':
@@ -13,13 +13,14 @@ class xtrabackup::install {
       ensure  => present,
       require => Yumrepo['percona'],
     }
-
-    file { "${xtrabackup::backup_script_location}/xtrabackup.sh":
-      ensure  => present,
-      owner   => root,
-      group   => root,
-      mode    => '0755',
-      content => template('xtrabackup/xtrabackup.sh.erb'),
-    }
   }
+
+  file { "${xtrabackup::backup_script_location}/xtrabackup.sh":
+    ensure  => present,
+    owner   => root,
+    group   => root,
+    mode    => '0755',
+    content => template('xtrabackup/xtrabackup.sh.erb'),
+  }
+
 }

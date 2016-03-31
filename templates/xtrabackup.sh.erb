@@ -1,6 +1,8 @@
 #!/bin/bash
-#
-# CONSTANTS
+
+## ================================================
+## CONSTANTS
+## ================================================
 BACKUP_DIR=<%= @backup_dir %>
 BACKUP_RETENTION=<%= @backup_retention %>
 MYSQL_USER=<%= @mysql_user %>
@@ -9,18 +11,46 @@ USE_INNOBACKUPX=<%= @use_innobackupx %>
 PRUNE_BACKUPS=<%= @prune_backups %>
 XTRABACKUP_OPTIONS=<%= @xtrabackup_options %>
 INNOBACKUPX_OPTIONS=<%= @innobackupx_otions %>
-BACKUP_LOC=${BACKUP_DIR}-`date +%F`
+LOGFILE=<%= @logfile %>
+BACKUP_LOCATION=${BACKUP_DIR}-`date +%F`
 
+## ================================================
+## FUNCTIONS
+## ================================================
+
+exit_with_error ()
+{
+  log "ERROR: $*"
+  log "ERROR: There was a problem with the xtrabackup run. See the logfile: ${LOGFILE}"
+  exit 1
+}
+
+log () {
+  LOGSTRING="[ `date +%Y/%m/%d:%H:%M:%S` ] : $*"
+  echo ${LOGSTRING}
+  echo ${LOGSTRING} >> ${LOGFILE}
+}
+
+check_status () {
+  if [ $? -ne 0 ]; then
+    exit_with_error "$1 Something went wrong with the backup. View the log file for more info."
+    exit 1
+  fi
+}
 
 prepare_env() {
-  mkdir -p ${BACKUP_LOC}
-
+  mkdir -p ${BACKUP_LOCATION}
 }
 
 run_xtrabackup() {
-  xtrabackup --backup --target-dir=${BACKUP_DIR}
-  xtrabackup --prepare --target-dir=${BACKUP_DIR}
-  xtrabackup --prepare --target-dir=${BACKUP_DIR}
+  echo_and_log "INFO: Starting backup process"
+  time xtrabackup ${XTRABACKUP_OPTIONS} --backup --target-dir=${BACKUP_LOCATION} >> ${LOGFILE} 2>&1
+  check_status
+  time xtrabackup --prepare --target-dir=${BACKUP_LOCATION} >> ${LOGFILE} 2>&1
+  check_status
+  time xtrabackup --prepare --target-dir=${BACKUP_LOCATION} >> ${LOGFILE} 2>&1
+  check_status
+  echo_and_log "INFO: Backup Process Complete"
 }
 
 run_innobackupx() {
@@ -28,24 +58,24 @@ run_innobackupx() {
 }
 
 run_prune_backups() {
-
+  echo_and_log "INFO: Clearing backups older than ${BACKUP_RETENTION} days"
+  find ${BACKUP_DIR}/* -type d -ctime +${BACKUP_RETENTION} -exec rm -rf {} + >> ${LOGFILE} 2>&1
+  check_status
 }
 
-log() {
 
-}
-
-
-# CALL FUNCTIONS
+## ================================================
+## MAIN
+## ================================================
 prepare_env
 
-if [ $USE_INNOBACKUPX == true ]; then
+if [ ${USE_INNOBACKUPX} == true ]; then
   run_innobackupx
 else
   run_xtrabackup
 fi
 
-if [ $PRUNE_BACKUPS == true ]; then
+if [ ${PRUNE_BACKUPS} == true ]; then
   run_prune_backups
 fi
 

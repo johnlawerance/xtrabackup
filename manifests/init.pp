@@ -59,6 +59,7 @@ class xtrabackup (
   $cron_monthday = '*',
   $xtrabackup_options = '',
   $innobackupx_options = '',
+  $logfile = '/var/log/xtrabackup.log',
   
   
 ){
