@@ -43,7 +43,7 @@
 # Copyright 2016 Your name here, unless otherwise noted.
 #
 class xtrabackup (
-  $package_version = '24-2.4.1-1',
+  $package_version = 'latest',
   $install_xtrabackup_bin = true,
   $prune_backups = true,
   $backup_retention = '7',
@@ -64,7 +64,7 @@ class xtrabackup (
   
 ){
   # Validate arguments
-  validate_re($package_version, '^*\.*\.*')
+  validate_string($package_version)
   validate_bool($use_innobackupx)
   validate_bool($install_xtrabackup_bin)
   validate_bool($prune_backups)
