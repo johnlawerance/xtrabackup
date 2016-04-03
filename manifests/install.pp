@@ -9,8 +9,8 @@ class xtrabackup::install inherits xtrabackup {
       gpgcheck => 1,
     }
 
-    package { "percona-xtrabackup-${xtrabackup::package_version}":
-      ensure  => present,
+    package { 'percona-xtrabackup':
+      ensure  => $xtrabackup::package_version,
       require => Yumrepo['percona'],
     }
   }
