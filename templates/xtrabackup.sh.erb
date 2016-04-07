@@ -46,8 +46,10 @@ run_xtrabackup() {
   log "INFO: Starting backup process"
   time xtrabackup ${XTRABACKUP_OPTIONS} --backup --user ${MYSQL_USER} --password ${MYSQL_PASS} --target-dir=${BACKUP_LOCATION} >> ${LOGFILE} 2>&1
   check_status
+  log "INFO: Preparing backup files phase 1"
   time xtrabackup --prepare --target-dir=${BACKUP_LOCATION} >> ${LOGFILE} 2>&1
   check_status
+  log "INFO: Preparing backup files phase 2"
   time xtrabackup --prepare --target-dir=${BACKUP_LOCATION} >> ${LOGFILE} 2>&1
   check_status
   log "INFO: Backup Process Complete"
