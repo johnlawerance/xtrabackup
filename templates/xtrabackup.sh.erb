@@ -12,7 +12,7 @@ PRUNE_BACKUPS=<%= @prune_backups %>
 XTRABACKUP_OPTIONS=<%= @xtrabackup_options %>
 INNOBACKUPX_OPTIONS=<%= @innobackupx_otions %>
 LOGFILE=<%= @logfile %>
-BACKUP_LOCATION=${BACKUP_DIR}-`date +%F`
+BACKUP_LOCATION=${BACKUP_DIR}/`date +%F`
 
 ## ================================================
 ## FUNCTIONS
@@ -44,7 +44,7 @@ prepare_env() {
 
 run_xtrabackup() {
   log "INFO: Starting backup process"
-  time xtrabackup ${XTRABACKUP_OPTIONS} --backup --target-dir=${BACKUP_LOCATION} >> ${LOGFILE} 2>&1
+  time xtrabackup ${XTRABACKUP_OPTIONS} --backup --user ${MYSQL_USER} --password ${MYSQL_PASS} --target-dir=${BACKUP_LOCATION} >> ${LOGFILE} 2>&1
   check_status
   time xtrabackup --prepare --target-dir=${BACKUP_LOCATION} >> ${LOGFILE} 2>&1
   check_status
