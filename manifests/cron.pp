@@ -4,7 +4,7 @@ class xtrabackup::cron {
     cron { 'xtrabackup':
       ensure   => present,
       user     => root,
-      command  => 'xtrabackup_command.sh',
+      command  => "${xtrabackup::backup_script_location}/xtrabackup.sh",
       hour     => $xtrabackup::cron_hour,
       minute   => $xtrabackup::cron_minute,
       month    => $xtrabackup::cron_month,
@@ -12,9 +12,10 @@ class xtrabackup::cron {
     }
   }
   if $xtrabackup::enable_cron == false {
-    cron { "${xtrabackup::backup_script_location}/xtrabackup.sh":
+    cron { 'xtrabackup':
       ensure   => absent,
       user     => root,
+      command  => "${xtrabackup::backup_script_location}/xtrabackup.sh",
       hour     => $xtrabackup::cron_hour,
       minute   => $xtrabackup::cron_minute,
       month    => $xtrabackup::cron_month,
