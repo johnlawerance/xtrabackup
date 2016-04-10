@@ -7,6 +7,7 @@ class xtrabackup::cron {
       command  => "${xtrabackup::backup_script_location}/xtrabackup.sh",
       hour     => $xtrabackup::cron_hour,
       minute   => $xtrabackup::cron_minute,
+      weekday  => $xtrabackup::cron_weekday,
       month    => $xtrabackup::cron_month,
       monthday => $xtrabackup::cron_monthday,
     }
@@ -18,6 +19,7 @@ class xtrabackup::cron {
       command  => "${xtrabackup::backup_script_location}/xtrabackup.sh",
       hour     => $xtrabackup::cron_hour,
       minute   => $xtrabackup::cron_minute,
+      weekday  => $xtrabackup::cron_weekday,
       month    => $xtrabackup::cron_month,
       monthday => $xtrabackup::cron_monthday,
     }
