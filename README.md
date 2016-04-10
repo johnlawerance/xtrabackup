@@ -1,4 +1,7 @@
 # xtrabackup
+[![Puppet Forge](https://img.shields.io/puppetforge/v/johnlawerance/xtrabackup.svg)](https://forge.puppetlabs.com/johnlawerance/xtrabackup)
+[![Build Status](https://travis-ci.org/johnlawerance/xtrabackup.svg?branch=master)](https://github.com/johnlawerance/xtrabackup)
+
 
 #### Table of Contents
 
