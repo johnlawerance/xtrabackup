@@ -104,7 +104,8 @@ class { ::xtrabackup:
 
 #### Private Classes
 
-* xtrabackup::install: Handles the packages and backup script.
+* xtrabackup::repo: Installs and manages the percona repo.
+* xtrabackup::install: Installs the packages and backup script.
 * xtrabackup::cron: Schedules the cronjob.
 
 ### Required Module Parameters
@@ -160,12 +161,14 @@ Location where the shell script output should be logged (default: '/var/log/xtra
 ## Limitations
 
 ### OSes Supported:
-* RHEL/CentOS 6,7
+* RHEL/CentOS 6, 7
+* Ubuntu 12.04, 14.04
 
 ### Dependencies:
 * puppetlabs-stdlib >= 3.0.0
+* puppetlabs-apt >= 1.4.0 (Only required for Ubuntu)
 
-This module has only been tested on CentOS7 using Puppet Enterprise 2015.3
+This module has only been tested on CentOS7 and Ubuntu 14.04 using Puppet Enterprise 2015.3
 
 ## Development
 
