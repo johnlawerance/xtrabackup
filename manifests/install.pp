@@ -1,20 +1,5 @@
 class xtrabackup::install inherits xtrabackup {
 
-  if $xtrabackup::install_xtrabackup_bin == true {
-    yumrepo { 'percona':
-      descr    => 'CentOS $releasever - Percona',
-      baseurl  => 'http://repo.percona.com/centos/$releasever/os/$basearch/',
-      gpgkey   => 'http://www.percona.com/downloads/percona-release/RPM-GPG-KEY-percona',
-      enabled  => 1,
-      gpgcheck => 1,
-    }
-
-    package { 'percona-xtrabackup':
-      ensure  => $xtrabackup::package_version,
-      require => Yumrepo['percona'],
-    }
-  }
-
   file { "${xtrabackup::backup_script_location}/xtrabackup.sh":
     ensure  => present,
     owner   => root,
@@ -23,4 +8,9 @@ class xtrabackup::install inherits xtrabackup {
     content => template('xtrabackup/xtrabackup.sh.erb'),
   }
 
+  if $xtrabackup::install_xtrabackup_bin == true {
+    package { 'percona-xtrabackup':
+      ensure  => $xtrabackup::package_version,
+    }
+  }
 }

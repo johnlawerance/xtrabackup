@@ -185,6 +185,7 @@ class xtrabackup (
   validate_string($mysql_pass)
   validate_bool($enable_cron)
   
+  class {'::xtrabackup::repo': } ->
   class {'::xtrabackup::install': } ->
   class {'::xtrabackup::cron': }
 
