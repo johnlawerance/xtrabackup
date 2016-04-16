@@ -1,6 +1,6 @@
 {
   "name": "johnlawerance-xtrabackup",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "author": "John Clark",
   "summary": "Install Percona xtrabackup / innobackupx and schedules automated backups of MySQL, MariaDB, Percona-Server and other MySQL derivitives.",
   "license": "WTFPL",
