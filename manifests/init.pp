@@ -181,6 +181,7 @@ class xtrabackup (
   validate_string($package_version)
   validate_bool($use_innobackupx)
   validate_bool($install_xtrabackup_bin)
+  validate_bool($manage_repo)
   validate_bool($prune_backups)
   validate_integer($backup_retention)
   validate_absolute_path($backup_dir)
