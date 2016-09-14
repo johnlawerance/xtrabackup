@@ -62,13 +62,14 @@ class { ::xtrabackup:
 }
 ```
 
-### Schedule backup for weekly Friday night's at 11PM, set the backup retention to 30 days, and don't install the xtrabackup packages:
+### Schedule backup for weekly Friday night's at 11PM, set the backup retention to 30 days, and don't install the xtrabackup packages, and don't install the Percona repo:
 ```puppet
 class { ::xtrabackup:
   backup_retention       => '30',
   cron_hour              => '22',
   cron_weekday           => '5',
   install_xtrabackup_bin => false,
+  manage_repo            => false,
   backup_dir             => '/mnt/backup/', 
   mysql_user             => 'backup_user',
   mysql_pass             => 'backup_password'
@@ -122,7 +123,9 @@ Password that should perform the backup (default: '') [REQUIRED]
 #### `package_version`
 Which version of xtrabackup binaries to install (default: latest)
 #### `install_xtrabackup_bin`
-Should the module install the Percona repo and manage the xtrabackup packages? (default: true)
+Should the module install the Percona xtrabackup packages? (default: true)
+#### `manage_repo`
+Should the module install the Percona repo? (default: true)
 #### `prune_backups`
 Should the module manage backup retention? (default: true)
 #### `backup_retention`
