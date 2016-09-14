@@ -1,6 +1,6 @@
 class xtrabackup::repo inherits xtrabackup {
 
-  if $xtrabackup::install_xtrabackup_bin == true {
+  if $xtrabackup::manage_repo == true {
 
     case $::operatingsystem {
       'RedHat', 'CentOS': {

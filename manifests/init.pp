@@ -82,6 +82,9 @@
 # Location where the shell script output should be logged
 # (default: '/var/log/xtrabackup.log')
 #
+# `manage_repo`
+# Parameter to determine if percona repository should be added (default: true)
+#
 #
 #
 # Examples
@@ -170,6 +173,7 @@ class xtrabackup (
   $xtrabackup_options = '',
   $innobackupx_options = '',
   $logfile = '/var/log/xtrabackup.log',
+  $manage_repo = true,
   
   
 ){
