@@ -8,12 +8,8 @@ script:
 matrix:
   fast_finish: true
   include:
-  - rvm: 1.9.3
-    env: PUPPET_VERSION="~> 3.0" STRICT_VARIABLES="yes"
   - rvm: 2.1.8
     env: PUPPET_VERSION="~> 3.0" STRICT_VARIABLES="yes"
-  - rvm: 1.9.3
-    env: PUPPET_VERSION="~> 3.0" STRICT_VARIABLES="yes" FUTURE_PARSER=yes
   - rvm: 2.1.8
     env: PUPPET_VERSION="~> 3.0" STRICT_VARIABLES="yes" FUTURE_PARSER=yes
   - rvm: 2.1.8
@@ -34,4 +30,4 @@ deploy:
   on:
     tags: true
     all_branches: false
-    rvm: 1.9.3
+    rvm: 2.1.8
