@@ -1,3 +1,7 @@
+##2017-08-24 - Release 0.2.2
+###Summary
+ - Set correct call to innobackupex binary
+
 ##2016-09-13 - Release 0.2.1
 ###Summary
  - Added param "manage_repo" to control whether the percona repo is installed or not
