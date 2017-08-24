@@ -60,7 +60,8 @@ run_innobackupx() {
   time innobackupex ${INNOBACKUPX_OPTIONS} ${BACKUP_LOCATION} >> $LOGFILE 2>&1
   check_status
   log "INFO: Preparing backup files"
-  time innobackupx --apply-log $BACKUP_LOCATION >> $LOGFILE 2>&1
+  INNOBACKUP_LOCATION=$(find ${BACKUP_LOCATION}/* -type d -print -quit)
+  time innobackupex --apply-log $INNOBACKUP_LOCATION >> $LOGFILE 2>&1
   check_status
   log "INFO: Backup Process Complete"
 }
