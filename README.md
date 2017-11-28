@@ -169,7 +169,7 @@ Location where the shell script output should be logged (default: '/var/log/xtra
 
 ### Dependencies:
 * puppetlabs-stdlib >= 3.0.0
-* puppetlabs-apt >= 1.4.0 (Only required for Ubuntu)
+* puppetlabs-apt >= 2.0.0 (Only required for Ubuntu)
 
 This module has only been tested on CentOS7 and Ubuntu 14.04 using Puppet Enterprise 2015.3
 

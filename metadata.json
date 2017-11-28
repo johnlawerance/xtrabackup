@@ -47,7 +47,7 @@
   "tags": ["xtrabackup", "innobackupx", "percona"],
   "dependencies": [
     {"name":"puppetlabs-stdlib","version_requirement":">= 3.0.0"},
-    {"name":"puppetlabs-apt","version_requirement":">= 1.4.0"}
+    {"name":"puppetlabs-apt","version_requirement":">= 2.0.0"}
   ],
   "data_provider": null
 }

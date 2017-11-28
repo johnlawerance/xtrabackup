@@ -1,3 +1,7 @@
+##2017-11-28 - Release 0.3.0
+###Summary
+ - Fix for newer versions of puppetlabs-apt >= 2.0.0
+
 ##2017-08-24 - Release 0.2.2
 ###Summary
  - Set correct call to innobackupex binary
