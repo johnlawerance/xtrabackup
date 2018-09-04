@@ -1,6 +1,6 @@
 {
   "name": "johnlawerance-xtrabackup",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "author": "John Clark",
   "summary": "Install Percona xtrabackup / innobackupx and schedules automated backups of MySQL, MariaDB, Percona-Server and other MySQL derivitives.",
   "license": "WTFPL",
@@ -41,6 +41,14 @@
       "operatingsystemrelease": [
         "12.04",
         "14.04"
+      ]
+    },
+    {
+      "operatingsystem": "Debian",
+      "operatingsystemrelease": [
+        "7",
+        "8",
+        "9"
       ]
     }
   ],

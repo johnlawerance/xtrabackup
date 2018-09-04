@@ -1,3 +1,8 @@
+##<DATE_TBD> - Release 0.4.0
+###Summary
+ - Update fingerprint for Debian/Ubuntu repo #7
+ - Confirming support for Debian #3
+
 ##2017-11-28 - Release 0.3.0
 ###Summary
  - Fix for newer versions of puppetlabs-apt >= 2.0.0
