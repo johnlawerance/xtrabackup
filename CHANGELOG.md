@@ -2,6 +2,7 @@
 ###Summary
  - Update fingerprint for Debian/Ubuntu repo #7
  - Confirming support for Debian #3
+ - Removed unneeded time output for shells script #9
 
 ##2017-11-28 - Release 0.3.0
 ###Summary
