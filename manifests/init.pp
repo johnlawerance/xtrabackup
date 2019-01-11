@@ -26,6 +26,10 @@
 # `package_version`
 # Which version of xtrabackup binaries to install (default: latest)
 #
+# `package_name`
+# Name of the package to install. (default: 'percona-xtrabackup')
+# Other common options: percona-xtrabackup-test-24, percona-backup-24, etc
+#
 # `install_xtrabackup_bin`
 # Should the module install the Percona repo and manage the xtrabackup
 # packages? (default: true)
@@ -155,6 +159,7 @@
 # Copyright 2016 John Clark, WTFPL
 #
 class xtrabackup (
+  $package_name = 'percona-xtrabackup',
   $package_version = 'latest',
   $install_xtrabackup_bin = true,
   $prune_backups = true,
@@ -179,6 +184,7 @@ class xtrabackup (
 ){
   # Validate arguments
   validate_string($package_version)
+  validate_string($package_name)
   validate_bool($use_innobackupx)
   validate_bool($install_xtrabackup_bin)
   validate_bool($manage_repo)

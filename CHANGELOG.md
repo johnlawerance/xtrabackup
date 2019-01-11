@@ -1,5 +1,6 @@
 ##<DATE_TBD> - Release 0.4.0
 ###Summary
+ - Add param for package-name #8
  - Update fingerprint for Debian/Ubuntu repo #7
  - Confirming support for Debian #3
  - Removed unneeded time output for shells script #9
