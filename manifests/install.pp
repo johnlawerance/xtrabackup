@@ -9,7 +9,7 @@ class xtrabackup::install inherits xtrabackup {
   }
 
   if $xtrabackup::install_xtrabackup_bin == true {
-    package { 'percona-xtrabackup':
+    package { "${xtrabackup::package_name}":
       ensure  => $xtrabackup::package_version,
     }
   }
